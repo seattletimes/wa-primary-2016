@@ -55,30 +55,30 @@ var gop = "Carson Cruz Kasich Trump".split(" ");
         <div class="results" data-mode="state">
           <div class="state results-list">
             <h2>Statewide</h2>
-            <ul class="democratic">
-              <% dems.forEach(function(c) { %>
-              <li class="<%= c %> <%= statewide[c].winner ? "winner" : "" %>">
-                <%= c %>: <%= statewide[c].votepct.toFixed(1) %>%
-              <% }); %>
-            </ul>
-            <ul class="republican">
-              <% gop.forEach(function(c) { %>
-              <li class="<%= c %> <%= statewide[c].winner ? "winner" : "" %>">
-                <%= c %>: <%= statewide[c].votepct.toFixed(1) %>%
-              <% }); %>
-            </ul>
+            <div class="row">
+              <ul class="democratic">
+                <% dems.forEach(function(c) { %>
+                <li class="<%= c %> <%= statewide[c].winner ? "winner" : "" %>">
+                  <%= c %>: <%= statewide[c].votepct.toFixed(1) %>%
+                <% }); %>
+              </ul>
+              <ul class="republican">
+                <% gop.forEach(function(c) { %>
+                <li class="<%= c %> <%= statewide[c].winner ? "winner" : "" %>">
+                  <%= c %>: <%= statewide[c].votepct.toFixed(1) %>%
+                <% }); %>
+              </ul>
+            </div>
             <div class="chatter">
               Click a county for detailed results
             </div>
           </div>
           <div class="county results-list">
             <h2 class="county-name"></h2>
-            <ul class="democratic">
-
-            </ul>
-            <ul class="republican">
-
-            </ul>
+            <div class="row">
+              <ul class="democratic"> </ul>
+              <ul class="republican"> </ul>
+            </div>
             <a class="back-to-state">&laquo; Back to state results</a>
           </div>
         </div>

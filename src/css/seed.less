@@ -69,18 +69,20 @@
 }
 
 .results-list {
+  @media @mobile {
+    .row {
+      .display-flex;
+      .justify-content(space-between);
+
+      ul { .flex(0 0 50%) }
+    }
+  }
+
   ul {
     margin: 0;
-    padding: 8px;
+    padding: 4px 8px 16px;
     list-style-type: none;
-
-    &.democratic {
-      border-top: 2px solid #55E;
-    }
-
-    &.republican {
-      border-top: 2px solid #E55;
-    }
+    border-top: 1px solid @df-light-gray;
   }
 
   li.winner {
