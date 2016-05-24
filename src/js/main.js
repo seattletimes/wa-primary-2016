@@ -23,10 +23,10 @@ var paint = function(party) {
   for (var c in window.counties) {
     var path = map.querySelector("#" + c.replace(/\s/g, "_"));
     var data = window.counties[c];
-    if (!data.winner[party]) {
-      path.style.fill = "#EEE";
-    } else {
+    if (data.winner[party]) {
       path.style.fill = palette[data.winner[party].last];
+    } else {
+      path.style.fill = null;
     }
   }
 };

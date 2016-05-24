@@ -3,7 +3,7 @@
 .interactive {
   .display-flex;
   font-family: @df-sans;
-  font-size: 15px;
+  font-size: 17px;
   max-width: 970px;
   margin: auto;
   padding: 8px 0;
@@ -14,11 +14,11 @@
   }
 
   .map {
-    .flex(2 0 70%);
+    .flex(0 0 50%);
   }
 
   .results {
-    .flex(1 0 30%);
+    .flex(0 0 50%);
   }
 }
 
@@ -32,6 +32,20 @@
 
     &.selected {
       font-weight: bold;
+    }
+  }
+
+  svg {
+    max-height: 200px;
+    margin: auto;
+    display: block;
+
+    path {
+      fill: #CCC;
+    }
+
+    path:hover {
+      fill: #EEE;
     }
   }
 }
@@ -69,13 +83,11 @@
 }
 
 .results-list {
-  @media @mobile {
-    .row {
-      .display-flex;
-      .justify-content(space-between);
+  .row {
+    .display-flex;
+    .justify-content(space-between);
 
-      ul { .flex(0 0 50%) }
-    }
+    ul { .flex(0 0 50%) }
   }
 
   ul {

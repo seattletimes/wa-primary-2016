@@ -21,7 +21,7 @@ for (var c in counties) {
   var results = counties[c].results;
   var winner = { Dem: null, GOP: null };
   results.forEach(function(r) {
-    if (r.votepct > 0 && r.votepct > winner.votepct) {
+    if (r.winner) {
       winner[r.party] = r;
     }
   });
@@ -70,7 +70,7 @@ var gop = "Carson Cruz Kasich Trump".split(" ");
               </ul>
             </div>
             <div class="chatter">
-              Click a county for detailed results
+              &laquo; Click a county for detailed results
             </div>
           </div>
           <div class="county results-list">
@@ -79,7 +79,7 @@ var gop = "Carson Cruz Kasich Trump".split(" ");
               <ul class="democratic"> </ul>
               <ul class="republican"> </ul>
             </div>
-            <a class="back-to-state">&laquo; Back to state results</a>
+            <a class="back-to-state">&laquo; Back to statewide results</a>
           </div>
         </div>
       </main>
