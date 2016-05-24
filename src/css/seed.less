@@ -1,0 +1,104 @@
+@import "seattletimes";
+
+.interactive {
+  .display-flex;
+  font-family: @df-sans;
+  font-size: 15px;
+  max-width: 970px;
+  margin: auto;
+  padding: 8px 0;
+
+  @media @mobile {
+    display: block;
+    padding: 8px 16px;
+  }
+
+  .map {
+    .flex(2 0 70%);
+  }
+
+  .results {
+    .flex(1 0 30%);
+  }
+}
+
+.map {
+  .map-controls {
+    text-align: center;
+  }
+
+  .map-controls a {
+    cursor: pointer;
+
+    &.selected {
+      font-weight: bold;
+    }
+  }
+}
+
+.results {
+  .results-list {
+    display: none;
+  }
+
+  &[data-mode="state"] .state.results-list {
+    display: block;
+  }
+
+  &[data-mode="county"] .county.results-list {
+    display: block;
+  }
+
+  h2 {
+    text-transform: uppercase;
+    margin: 0;
+    font-size: 18px;
+    font-weight: normal;
+  }
+
+  .chatter {
+    padding: 20px 0;
+    color: @df-dark-gray;
+  }
+
+  .back-to-state {
+    padding: 20px 0;
+    cursor: pointer;
+    display: block;
+  }
+}
+
+.results-list {
+  ul {
+    margin: 0;
+    padding: 8px;
+    list-style-type: none;
+
+    &.democratic {
+      border-top: 2px solid #55E;
+    }
+
+    &.republican {
+      border-top: 2px solid #E55;
+    }
+  }
+
+  li.winner {
+    font-weight: bold;
+  }
+
+  li::before {
+    content: "";
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    vertical-align: baseline;
+  }
+
+  li.Clinton::before { background: @st-dark-red }
+  li.Sanders::before { background: @st-dark-green }
+  li.Carson::before { background: @st-dark-purple }
+  li.Cruz::before { background: @st-dark-blue }
+  li.Kasich::before { background: @st-dark-orange }
+  li.Trump::before { background: @df-maroon }
+}

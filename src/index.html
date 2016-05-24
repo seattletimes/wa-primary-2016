@@ -1,0 +1,92 @@
+<%
+
+var statewide = {};
+var counties = {};
+var raw = json.results.filter(function(row) {
+  return row.statepostal == "WA";
+});
+
+raw.forEach(function(row) {
+  row.votepct *= 100;
+  if (row.reportingunitid == "state-1") {
+    statewide[row.last] = row;
+  } else {
+    var county = row.reportingunitname;
+    if (!counties[county]) counties[county] = { results: [] };
+    counties[county].results.push(row);
+  }
+});
+
+for (var c in counties) {
+  var results = counties[c].results;
+  var winner = { Dem: null, GOP: null };
+  results.forEach(function(r) {
+    if (r.votepct > 0 && r.votepct > winner.votepct) {
+      winner[r.party] = r;
+    }
+  });
+  counties[c].winner = winner;
+}
+
+%><!doctype html>
+<html>
+  <head>
+    <title><%= json.project.title %></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <%= t.include("partials/_head.html") %>
+  </head>
+  <body>
+
+    <responsive-child>
+      <main class="interactive">
+        <div class="map">
+          <nav class="map-controls">
+            Show results for: 
+            <a data-party="Dem" class="selected">Dem.</a> |
+            <a data-party="GOP">GOP</a>
+          </nav>
+          <%= t.include("assets/countyMap.svg") %>
+        </div>
+        <div class="results" data-mode="state">
+          <div class="state results-list">
+            <h2>Statewide</h2>
+            <ul class="democratic">
+              <li class="Clinton <%= statewide.Clinton.winner ? "winner" : "" %>"> Clinton: <%= statewide.Clinton.votepct.toFixed(1) %>%
+              <li class="Sanders <%= statewide.Sanders.winner ? "winner" : "" %>"> Sanders: <%= statewide.Sanders.votepct.toFixed(1) %>%
+            </ul>
+            <ul class="republican">
+              <li class="Carson <%= statewide.Carson.winner ? "winner" : "" %>"> Carson: <%= statewide.Carson.votepct.toFixed(1) %>%
+              <li class="Cruz <%= statewide.Cruz.winner ? "winner" : "" %>"> Cruz: <%= statewide.Cruz.votepct.toFixed(1) %>%
+              <li class="Kasich <%= statewide.Kasich.winner ? "winner" : "" %>"> Kasich: <%= statewide.Kasich.votepct.toFixed(1) %>%
+              <li class="Trump <%= statewide.Trump.winner ? "winner" : "" %>"> Trump: <%= statewide.Trump.votepct.toFixed(1) %>%
+            </ul>
+            <div class="chatter">
+              Click a county for detailed results
+            </div>
+          </div>
+          <div class="county results-list">
+            <h2 class="county-name"></h2>
+            <ul class="democratic">
+
+            </ul>
+            <ul class="republican">
+
+            </ul>
+            <a class="back-to-state">&laquo; Back to state results</a>
+          </div>
+        </div>
+      </main>
+    </responsive-child>
+
+    <script>
+      var counties = <%= JSON.stringify(counties) %>;
+    </script>
+    <script src="app.js" async></script>
+    <% if (json.project.production) { %>
+    <%= !json.project.embedded ? t.include("partials/_foot.html") : "" %>
+    <%= t.include("partials/_workHere.html") %>
+    <% } %>
+  </body>
+</html>
