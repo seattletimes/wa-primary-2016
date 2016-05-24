@@ -12,7 +12,7 @@ var commands = [
   "git checkout " + branch,
   "git pull origin " + branch,
   "elex results 2016-05-24 -o json --format-json > data/results.json",
-  "grunt sheets static publish:live"
+  "grunt static publish:live"
 ];
 
 /** end config **/
