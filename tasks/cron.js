@@ -6,11 +6,12 @@ Runs tasks on an automated basis
 
 /** config variables **/
 
-var branch = "prod"; //Git branch for deployment
-var interval = 1000 * 3; //30 minutes by default
+var branch = "master"; //Git branch for deployment
+var interval = 1000 * 2 * 60; //30 minutes by default
 var commands = [
   "git checkout " + branch,
   "git pull origin " + branch,
+  "elex results 2016-05-24 -o json --format-json > data/results.json",
   "grunt sheets static publish:live"
 ];
 
