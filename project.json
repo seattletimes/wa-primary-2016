@@ -5,8 +5,8 @@
       "path": ""
     },
     "live": {
-      "bucket": "",
-      "path": ""
+      "bucket": "projects.seattletimes.com",
+      "path": "2016/local/wa-primary-results"
     }
   },
   "title": "",
