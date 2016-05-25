@@ -1,5 +1,13 @@
 <%
 
+var date = new Date();
+var hours = date.getHours();
+var amPM = hours >= 12 ? "PM" : "AM";
+if (hours > 12) hours -= 12;
+var minutes = date.getMinutes();
+if (minutes < 10) minutes = "0" + minutes;
+var timestring = hours + ":" + minutes + " " + amPM;
+
 var statewide = {};
 var counties = {};
 var raw = json.results.filter(function(row) {
@@ -46,7 +54,7 @@ var gop = "Carson Cruz Kasich Trump".split(" ");
       <main class="interactive">
         <div class="map">
           <nav class="map-controls">
-            Show results for: 
+            Show results for:
             <a data-party="Dem" class="selected">Dem.</a> |
             <a data-party="GOP">GOP</a>
           </nav>
@@ -80,6 +88,9 @@ var gop = "Carson Cruz Kasich Trump".split(" ");
               <ul class="republican"> </ul>
             </div>
             <a class="back-to-state">&laquo; Back to statewide results</a>
+          </div>
+          <div class="date-time">
+            Updated: May 24, <%= timestring %>
           </div>
         </div>
       </main>
