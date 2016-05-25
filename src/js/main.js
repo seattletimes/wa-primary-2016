@@ -53,9 +53,9 @@ var onCounty = function(e) {
   var gop = county.results.filter(r => r.party == "GOP");
   results.querySelector(".county-name").innerHTML = c;
   var demList = results.querySelector(".county .democratic");
-  demList.innerHTML = dem.map(r => `<li class="${r.last} ${r.winner ? "winner" : "" }"> ${r.last}: ${r.votepct.toFixed(1)}%`);
+  demList.innerHTML = dem.map(r => `<li class="${r.last} ${r.winner ? "winner" : "" }"> ${r.last}: ${r.votepct.toFixed(1)}%`).join("");
   var gopList = results.querySelector(".county .republican");
-  gopList.innerHTML = gop.map(r => `<li class="${r.last} ${r.winner ? "winner" : "" }"> ${r.last}: ${r.votepct.toFixed(1)}%`);
+  gopList.innerHTML = gop.map(r => `<li class="${r.last} ${r.winner ? "winner" : "" }"> ${r.last}: ${r.votepct.toFixed(1)}%`).join("");
 };
 
 map.addEventListener("click", onCounty);
