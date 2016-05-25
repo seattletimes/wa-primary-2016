@@ -27,9 +27,9 @@ raw.forEach(function(row) {
 
 for (var c in counties) {
   var results = counties[c].results;
-  var winner = { Dem: null, GOP: null };
+  var winner = { Dem: { votepct: 0 }, GOP: { votepct: 0 } };
   results.forEach(function(r) {
-    if (r.winner) {
+    if (r.votepct > winner[r.party].votepct) {
       winner[r.party] = r;
     }
   });
